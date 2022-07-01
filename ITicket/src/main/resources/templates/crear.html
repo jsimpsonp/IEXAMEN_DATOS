@@ -1,0 +1,66 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf/org">
+    <head>
+        <title>Bootstrap demo</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+    </head>
+    <body>
+
+        <div class="card-header bg-black text-white"></div>
+        <div class="card-body">
+
+            <div class="container">
+
+
+                <form th:object="${concierto}"
+                      th:action="@{/save}"
+                      method="POST"
+                      >
+                    <input type="hidden" th:field="*{id}"> <!-- Relacionado al IDENTITY y autoincrementar -->
+
+
+                    <div class="form-group mb-3 row">
+                        <label class="col-sm-2 col-form-label" for="costoEvento">Costo del Evento</label>
+                        <div class="col-sm-10">
+                            <input type="text" th:field="*{costoEvento}" class="form-control form-control-sm" id="costoEvento" placeholder="Digite el costo del evento">
+                        </div>
+                    </div>
+                    <div class="form-group mb-3 row">
+                        <label  class="col-sm-2 col-form-label " for="fecha">Fecha</label>
+                        <div class="col-sm-10">
+                            <input type="text" th:field="*{fecha}" class="form-control form-control-sm" id="fechaecha" placeholder="Fecha">
+                        </div>
+                    </div>
+                    <div class="form-group mb-3 row">
+                        <label  class="col-sm-2 col-form-label " for="capacidadPersonas">Capacidad max. de Personas</label>
+                        <div class="col-sm-10">
+                            <input type="text" th:field="*{capacidadPersonas}" class="form-control form-control-sm" id="capacidadPersonas" placeholder="Capacidad max. de Personas">
+                        </div>
+                    </div>
+                    <div class="form-group mb-3 row">
+                        <label  class="col-sm-2 col-form-label " for="telefono">Lugar</label>
+                        <div class="col-sm-10">
+                            <input type="text" th:field="*{lugar}" class="form-control form-control-sm" id="lugar" placeholder="Lugar...">
+                        </div>
+                    </div>
+   
+
+                    <div class="form-group mb-3 row">
+                        <label class="form-control-sm col-form-label col-md-2" for="artistas">Artista</label>
+                        <div class="col-sm-10">
+                            <select th:field="*{artista}" id="artista" class="form-select">
+                                <option th:each="x:${artistas}"
+                                        th:value="${x.id}"
+                                        th:text="${x.artista}"/>
+                            </select>               
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" value="Guardar">Submit</button>
+                </form>
+
+            </div>
+        </div>
+    </body>
+</html>
